@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Changelog mostrato dentro il pannello di amministrazione di Joomla. -->
+<changelogs>
+	<changelog>
+		<element>wmthoneypot</element>
+		<type>plugin</type>
+		<folder>system</folder>
+		<version>1.0.0</version>
+		<note>
+			<item>Prima versione: campo esca e controllo dei tempi sul modulo Contatti del core.</item>
+		</note>
+	</changelog>
+</changelogs>

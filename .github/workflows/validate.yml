@@ -1,0 +1,34 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sintassi PHP
+        run: find services src -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: XML ben formati
+        run: xmllint --noout wmthoneypot.xml updates.xml changelog.xml
+
+      - name: Struttura, versioni e coerenza
+        run: node scripts/validate.mjs
+
+      - name: Il pacchetto si costruisce
+        run: |
+          node scripts/build.mjs
+          git diff --exit-code updates.xml \
+            || (echo "updates.xml non è allineato: esegui 'npm run build' e committa" && exit 1)

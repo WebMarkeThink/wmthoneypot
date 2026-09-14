@@ -1,0 +1,13 @@
+{
+  "name": "wmthoneypot",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Strumenti di build per il plugin Joomla plg_system_wmthoneypot (la versione vera sta nel manifest)",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs"
+  },
+  "license": "GPL-2.0-or-later",
+  "author": "WebMarkeThink"
+}
