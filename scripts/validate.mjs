@@ -30,7 +30,7 @@ function checkXml(file) {
   if (stack.length) errors.push(`${file}: tag non chiusi (${stack.join(', ')})`);
 }
 
-for (const file of [`${ELEMENT}.xml`, 'updates.xml', 'changelog.xml']) {
+for (const file of [`${ELEMENT}.xml`, 'hpupdates.xml', 'changelog.xml']) {
   existsSync(join(ROOT, file)) ? checkXml(file) : errors.push(`${file}: mancante`);
 }
 
@@ -51,17 +51,17 @@ for (const [, lang] of manifest.matchAll(/<language[^>]*>([^<]+)<\/language>/g))
 }
 
 // Coerenza delle versioni fra i file che il cliente legge
-const updatesVersion = (read('updates.xml').match(/<update>[\s\S]*?<version>([^<]+)<\/version>/) || [])[1];
+const updatesVersion = (read('hpupdates.xml').match(/<update>[\s\S]*?<version>([^<]+)<\/version>/) || [])[1];
 const changelogVersion = (read('changelog.xml').match(/<changelog>[\s\S]*?<version>([^<]+)<\/version>/) || [])[1];
 const mdVersion = (read('CHANGELOG.md').match(/^## \[?(\d+\.\d+\.\d+)\]?/m) || [])[1];
 
-if (updatesVersion !== version) errors.push(`updates.xml: versione ${updatesVersion}, manifest ${version}`);
+if (updatesVersion !== version) errors.push(`hpupdates.xml: versione ${updatesVersion}, manifest ${version}`);
 if (changelogVersion !== version) errors.push(`changelog.xml: versione ${changelogVersion}, manifest ${version}`);
 if (mdVersion !== version) errors.push(`CHANGELOG.md: versione ${mdVersion}, manifest ${version}`);
 
 // L'update server deve puntare alla release di questa versione
-if (!read('updates.xml').includes(`/v${version}/plg_system_${ELEMENT}-${version}.zip`)) {
-  errors.push('updates.xml: il link di download non corrisponde alla versione');
+if (!read('hpupdates.xml').includes(`/v${version}/plg_system_${ELEMENT}-${version}.zip`)) {
+  errors.push('hpupdates.xml: il link di download non corrisponde alla versione');
 }
 
 // In release: il tag deve corrispondere al manifest

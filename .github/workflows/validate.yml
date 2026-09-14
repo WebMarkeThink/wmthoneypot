@@ -22,7 +22,7 @@ jobs:
         run: find services src -name '*.php' -print0 | xargs -0 -n1 php -l
 
       - name: XML ben formati
-        run: xmllint --noout wmthoneypot.xml updates.xml changelog.xml
+        run: xmllint --noout wmthoneypot.xml hpupdates.xml changelog.xml
 
       - name: Struttura, versioni e coerenza
         run: node scripts/validate.mjs
@@ -30,5 +30,5 @@ jobs:
       - name: Il pacchetto si costruisce
         run: |
           node scripts/build.mjs
-          git diff --exit-code updates.xml \
-            || (echo "updates.xml non è allineato: esegui 'npm run build' e committa" && exit 1)
+          git diff --exit-code hpupdates.xml \
+            || (echo "hpupdates.xml non è allineato: esegui 'npm run build' e committa" && exit 1)

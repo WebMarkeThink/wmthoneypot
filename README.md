@@ -72,17 +72,23 @@ node scripts/build.mjs      # crea dist/plg_system_wmthoneypot-<versione>.zip e 
 ### Rilasciare una versione
 
 1. Aggiornare la versione nel manifest `wmthoneypot.xml`, poi `CHANGELOG.md` e `changelog.xml`.
-2. `node scripts/build.mjs` — riallinea `updates.xml` con versione, link di download e hash.
+2. `node scripts/build.mjs` — riallinea `hpupdates.xml` con versione, link di download e hash.
 3. Committare, poi creare il tag `vX.Y.Z`: la CI verifica che tag e manifest coincidano,
    ricostruisce il pacchetto e pubblica la release.
-4. **Caricare `updates.xml` su <https://updates.webmarkethink.it/wmthoneypot.xml>** (via FTP).
+4. **Caricare `hpupdates.xml` su <https://updates.webmarkethink.it/hpupdates.xml>** (via FTP).
    È l'unico passaggio manuale: l'update server sta su un nostro dominio, non in CI, per non tenere
    credenziali FTP nei secret del repository. Finché non lo si carica, i siti installati non vedono
    il nuovo aggiornamento.
 
-Attenzione a non confondere i due XML: `wmthoneypot.xml` nel repository è il **manifest**
-dell'estensione, mentre il file da pubblicare sul sottodominio è il contenuto di **`updates.xml`**
-(che lì prende il nome `wmthoneypot.xml`).
+Attenzione a non confondere i due XML del repository:
+
+| File | Cos'è | Dove va |
+|---|---|---|
+| `wmthoneypot.xml` | **manifest**: descrive l'estensione a Joomla durante l'installazione | dentro il pacchetto |
+| `hpupdates.xml` | **update server**: versione disponibile, link di download e hash | su `updates.webmarkethink.it` |
+
+Il sottodominio `updates.webmarkethink.it` ospita gli update server di più estensioni: da qui il prefisso
+nel nome del file (`hp` = honeypot). Ogni nuova estensione userà un nome proprio sullo stesso sottodominio.
 
 ## Licenza
 

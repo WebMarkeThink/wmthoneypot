@@ -22,7 +22,7 @@
 	</languages>
 	<changelogurl>https://raw.githubusercontent.com/WebMarkeThink/wmthoneypot/main/changelog.xml</changelogurl>
 	<updateservers>
-		<server type="extension" priority="1" name="WmtHoneypot">https://updates.webmarkethink.it/wmthoneypot.xml</server>
+		<server type="extension" priority="1" name="WmtHoneypot">https://updates.webmarkethink.it/hpupdates.xml</server>
 	</updateservers>
 	<config>
 		<fields name="params">

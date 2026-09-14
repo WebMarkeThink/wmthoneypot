@@ -46,7 +46,8 @@ const sha384 = createHash('sha384').update(bytes).digest('hex');
 
 // L'update server punta sempre al download della release corrispondente al tag.
 const downloadUrl = `https://github.com/WebMarkeThink/${ELEMENT}/releases/download/v${version}/${zipName}`;
-const updatesPath = join(ROOT, 'updates.xml');
+// Nome con prefisso: il sottodominio updates.webmarkethink.it ospita gli XML di più estensioni.
+const updatesPath = join(ROOT, 'hpupdates.xml');
 const updates = readFileSync(updatesPath, 'utf8')
   .replace(/(<update>[\s\S]*?<version>)[^<]+(<\/version>)/, `$1${version}$2`)
   .replace(/(<downloadurl[^>]*>)[^<]+(<\/downloadurl>)/, `$1${downloadUrl}$2`)
@@ -59,4 +60,4 @@ writeFileSync(join(ROOT, 'dist', `${zipName}.sha256`), `${sha256}  ${zipName}\n`
 
 console.log(`${zipName} — ${files.length} file, ${(bytes.length / 1024).toFixed(1)} kB`);
 console.log(`sha256 ${sha256}`);
-console.log('updates.xml allineato');
+console.log('hpupdates.xml allineato — ricordarsi di caricarlo su updates.webmarkethink.it');
