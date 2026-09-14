@@ -1,0 +1,5 @@
+# Fine riga LF nel repository: il pacchetto finisce su server Linux.
+* text=auto eol=lf
+*.zip binary
+*.png binary
+*.woff2 binary
