@@ -32,9 +32,19 @@ ancora ammessi, non funziona. PHP 8.1+.
 
 ## Installazione
 
-*Sistema → Installa estensioni* → caricare lo zip dalla
-[pagina delle release](https://github.com/WebMarkeThink/wmthoneypot/releases), poi abilitare
-**Sistema - WMT Honeypot anti-spam**.
+*Sistema → Installa estensioni* → scheda **Installa da URL**, incollando il link dell'allegato
+dell'ultima [release](https://github.com/WebMarkeThink/wmthoneypot/releases), per esempio:
+
+```
+https://github.com/WebMarkeThink/wmthoneypot/releases/download/v1.0.0/plg_system_wmthoneypot-1.0.0.zip
+```
+
+Poi abilitare **Sistema - WMT Honeypot anti-spam** in *Sistema → Plugin*.
+
+> **Il file giusto è `plg_system_wmthoneypot-<versione>.zip`**, una decina di KB.
+> Non sono installabili né i due *Source code (zip/tar.gz)* che GitHub allega in automatico a ogni
+> release, né lo zip del pulsante *Code → Download ZIP*: contengono il repository, non il pacchetto,
+> e Joomla risponde che manca il file manifest.
 
 Gli aggiornamenti arrivano dal pannello di Joomla: il manifest dichiara un update server.
 
