@@ -21,8 +21,21 @@ jobs:
       - name: Sintassi PHP
         run: find services src -name '*.php' -print0 | xargs -0 -n1 php -l
 
+      # Con PHP invece di xmllint: è già installato sui runner ed è lo stesso
+      # interprete che leggerà questi XML su Joomla.
       - name: XML ben formati
-        run: xmllint --noout wmthoneypot.xml hpupdates.xml changelog.xml
+        run: |
+          for f in wmthoneypot.xml hpupdates.xml changelog.xml; do
+            php -r '
+              libxml_use_internal_errors(true);
+              $doc = new DOMDocument();
+              if (!$doc->load($argv[1])) {
+                foreach (libxml_get_errors() as $e) { fwrite(STDERR, $argv[1] . ": " . trim($e->message) . "\n"); }
+                exit(1);
+              }
+              echo "ok  " . $argv[1] . "\n";
+            ' "$f"
+          done
 
       - name: Struttura, versioni e coerenza
         run: node scripts/validate.mjs
