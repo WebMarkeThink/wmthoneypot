@@ -69,9 +69,20 @@ node scripts/validate.mjs   # XML, file dichiarati, coerenza delle versioni
 node scripts/build.mjs      # crea dist/plg_system_wmthoneypot-<versione>.zip e allinea updates.xml
 ```
 
-Per rilasciare: aggiornare versione nel manifest, `CHANGELOG.md` e `changelog.xml`, eseguire la build,
-committare `updates.xml`, poi creare il tag `vX.Y.Z`. La CI ricostruisce il pacchetto, verifica che
-tag e manifest coincidano e pubblica la release.
+### Rilasciare una versione
+
+1. Aggiornare la versione nel manifest `wmthoneypot.xml`, poi `CHANGELOG.md` e `changelog.xml`.
+2. `node scripts/build.mjs` — riallinea `updates.xml` con versione, link di download e hash.
+3. Committare, poi creare il tag `vX.Y.Z`: la CI verifica che tag e manifest coincidano,
+   ricostruisce il pacchetto e pubblica la release.
+4. **Caricare `updates.xml` su <https://updates.webmarkethink.it/wmthoneypot.xml>** (via FTP).
+   È l'unico passaggio manuale: l'update server sta su un nostro dominio, non in CI, per non tenere
+   credenziali FTP nei secret del repository. Finché non lo si carica, i siti installati non vedono
+   il nuovo aggiornamento.
+
+Attenzione a non confondere i due XML: `wmthoneypot.xml` nel repository è il **manifest**
+dell'estensione, mentre il file da pubblicare sul sottodominio è il contenuto di **`updates.xml`**
+(che lì prende il nome `wmthoneypot.xml`).
 
 ## Licenza
 

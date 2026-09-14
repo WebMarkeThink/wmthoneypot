@@ -26,7 +26,7 @@
 		<maintainerurl>https://www.webmarkethink.it</maintainerurl>
 		<targetplatform name="joomla" version="6\.[0-9]+"/>
 		<php_minimum>8.1</php_minimum>
-		<sha256>02ac64174fb3cfa125eaea18290301905812da715b41e460f4982c73248a08cf</sha256>
-		<sha384>85636ee2a08dfa65c5564ec155f21772455f55eec41091dd6784db5d3e33d54a5308341b49a35079389c030bf435ddc5</sha384>
+		<sha256>a16a6f0a551505a3aacb4297aa614aa17c72246277a7c64d5f9792aed2775ead</sha256>
+		<sha384>47b58eab451d7f10da52206fc0ec1243e55f68375334650430d479df8e9c2e0ab9eb30d06145757dae7a50d5fa6573f8</sha384>
 	</update>
 </updates>
